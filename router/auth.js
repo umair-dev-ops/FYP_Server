@@ -208,8 +208,7 @@ router.post("/getUserstest",async(req,res)=>{
     console.log("get users test");
   
 
-  console.log(req.body.skill);
-  console.log(req.body.props);
+
   var conditions= {}; // declare the query object
   var and_clauses=[]; // filter the search by any criteria given by the user
   if((req.body.props.skills).length > 0){ // if the criteria has a value or values
@@ -220,6 +219,11 @@ router.post("/getUserstest",async(req,res)=>{
   if(req.body.props.sal){ // if the criteria has a value or values
     console.log("yes sal is available");
     and_clauses.push({'salary':{$gte:req.body.props.sal}});  
+    // add to the query object
+  }
+  if((req.body.props.experience).length>0){ // if the criteria has a value or values
+    
+    and_clauses.push({'radio1':{$in:req.body.props.experience}});  
     // add to the query object
   }
   
@@ -237,7 +241,7 @@ if(and_clauses.length > 0){
             console.log(err);
             res.status(500).send(err);
         }else{
-            console.log(users);
+            
             res.status(200).send(users);
         }
 });

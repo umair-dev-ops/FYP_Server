@@ -1,10 +1,27 @@
 const express = require("express");
+const {graphqlHTTP} = require('express-graphql');
+const schema = require('./graphql_schema/schema');
 const app = express();
 const dotenv = require("dotenv");
+const cors = require('cors');
 dotenv.config({ path: "./config.env" });
 const port = process.env.PORT;
 
 require("./db/conn");
+// allow cross-origin requests
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+app.use(cors(corsOptions));
+
+//for grapql
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true
+}));
+
 
 // const User = require('./model/userSchema');
 

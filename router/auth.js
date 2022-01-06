@@ -75,7 +75,7 @@ router.post("/sendEmail",(req, res) => {
   service: 'gmail',
   auth: {
     user: 'fypjobportal@gmail.com',
-    pass: 'fypjobportal123'
+    pass: 'jftmdgytyeeiugyu'
   },
   tls:
   {

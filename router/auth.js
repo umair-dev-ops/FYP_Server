@@ -97,6 +97,7 @@ var mailOptions = {
 transport.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
+    res.status(500).json(error);
   } else {
     console.log('Email sent: ' + info.response);
     res.status(201).json({ message: "Email sent Successfully" });
